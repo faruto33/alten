@@ -1,0 +1,274 @@
+nelmio_api_doc:
+    documentation:
+        servers:
+          - url : http://127.0.0.1:33473
+        paths:
+          '/product':
+            get:
+              tags:
+                - Products
+              summary: 'Get all products'
+              description: 'Get all products'
+              operationId: getAll
+              responses:
+                '200':
+                  description: 'Recupération de la liste des produits'
+            post:
+              tags:
+                - Products
+              summary: 'Create a new product'
+              description: 'Create a new product'
+              operationId: createProduct
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      properties:
+                        id:
+                          type: int
+                        code:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        Image:
+                          type: string
+                        category:
+                          type: string
+                        pricce:
+                          type: float
+                        Inventory:
+                          type: string
+                        Rating:
+                          type: int
+                      type: object
+                      example:
+                        id: 1
+                        code: "XV46"
+                        name: "Porte coulissante"
+                        description: Porte coulissante
+                        image: "img/pc.PNG"
+                        category: "mobilier"
+                        price: 45.99
+                        quantity: 1
+                        internalReference: "M_XV46"
+                        shellId: 8976
+                        inventoryStatus: "INSTOCK"
+                        rating: 5
+              responses:
+                '200':
+                  description: 'Product'
+                  content:
+                    application/json:
+                      schema:
+                        oneOf:
+                          - { $ref: '#/components/schemas/Product' }
+                          - { type: boolean }
+                      examples:
+                        result:
+                          summary: 'An result object.'
+                          value:
+                            id: 1
+                            code: "XV46"
+                            name: "Porte coulissante"
+                            description: Porte coulissante
+                            image: "img/pc.PNG"
+                            category: "mobilier"
+                            price: 45.99
+                            quantity: 1
+                            internalReference: "M_XV46"
+                            shellId: 8976
+                            inventoryStatus: "INSTOCK"
+                            rating: 5
+                        bool:
+                          summary: 'A boolean value.'
+                          value: false
+          '/product/{id}':
+              get:
+                tags:
+                  - Products
+                summary: 'Get a unique product'
+                description: 'Get a unique product'
+                operationId: getProduct
+                parameters:
+                  -
+                    name: id
+                    in: path
+                    description: 'Unique Id'
+                    required: true
+                    schema:
+                      type: string
+                responses:
+                  '200':
+                    description: 'Product'
+                    content:
+                      application/json:
+                        schema:
+                          oneOf:
+                            - { $ref: '#/components/schemas/Product' }
+                            - { type: boolean }
+                        examples:
+                          result:
+                            summary: 'An result object.'
+                            value:
+                              id: 1
+                              code: "XV46"
+                              name: "Porte coulissante"
+                              description: Porte coulissante
+                              image: "img/pc.PNG"
+                              category: "mobilier"
+                              price: 45.99
+                              quantity: 1
+                              internalReference: "M_XV46"
+                              shellId: 8976
+                              inventoryStatus: "INSTOCK"
+                              rating: 5
+                          bool:
+                            summary: 'A boolean value.'
+                            value: false
+              delete:
+                tags:
+                  - Products
+                summary: 'Delete a product'
+                description: 'Delete a unique product'
+                operationId: deleteProduct
+                parameters:
+                  -
+                    name: id
+                    in: path
+                    description: 'Unique Id'
+                    required: true
+                    schema:
+                      type: string
+                responses:
+                  '200':
+                    description: 'Product'
+                    content:
+                      application/json:
+                        schema:
+                          oneOf:
+                            - { $ref: '#/components/schemas/Product' }
+                            - { type: boolean }
+                        examples:
+                          result:
+                            summary: 'An result object.'
+                            value:
+                              id: 1
+                              code: "XV46"
+                              name: "Porte coulissante"
+                              description: Porte coulissante
+                              image: "img/pc.PNG"
+                              category: "mobilier"
+                              price: 45.99
+                              quantity: 1
+                              internalReference: "M_XV46"
+                              shellId: 8976
+                              inventoryStatus: "INSTOCK"
+                              rating: 5
+                          bool:
+                            summary: 'A boolean value.'
+                            value: false
+              patch:
+                tags:
+                  - Products
+                summary: 'Edit a product'
+                description: 'Edit a product'
+                operationId: editProduct
+                requestBody:
+                  content:
+                    application/json:
+                      schema:
+                        properties:
+                          code:
+                            type: string
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          Image:
+                            type: string
+                          category:
+                            type: string
+                          pricce:
+                            type: float
+                          Inventory:
+                            type: string
+                          Rating:
+                            type: int
+                        type: object
+                        example:
+                          code: "XV46"
+                          name: "Porte coulissante"
+                          description: Porte coulissante
+                          image: "img/pc.PNG"
+                          category: "mobilier"
+                          price: 45.99
+                          quantity: 1
+                          internalReference: "M_XV46"
+                          shellId: 8976
+                          inventoryStatus: "INSTOCK"
+                          rating: 5
+                parameters:
+                  -
+                    name: id
+                    in: path
+                    description: 'Unique Id'
+                    required: true
+                    schema:
+                      type: string
+                responses:
+                  '200':
+                    description: 'Product'
+                    content:
+                      application/json:
+                        schema:
+                          oneOf:
+                            - { $ref: '#/components/schemas/Product' }
+                            - { type: boolean }
+                        examples:
+                          result:
+                            summary: 'An result object.'
+                            value:
+                              id: 1
+                              code: "XV46"
+                              name: "Porte coulissante"
+                              description: Porte coulissante
+                              image: "img/pc.PNG"
+                              category: "mobilier"
+                              price: 45.99
+                              quantity: 1
+                              internalReference: "M_XV46"
+                              shellId: 8976
+                              inventoryStatus: "INSTOCK"
+                              rating: 5
+                          bool:
+                            summary: 'A boolean value.'
+                            value: false
+        components:
+          schemas:
+            Product:
+              title: 'Product Schema'
+              properties:
+                  id:
+                    type: int
+                  code:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  Image:
+                    type: string
+                  category:
+                    type: string
+                  pricce:
+                    type: float
+                  Inventory:
+                    type: string
+                  Rating:
+                    type: int
+          type: object
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
